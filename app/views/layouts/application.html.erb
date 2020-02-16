@@ -55,10 +55,9 @@
                   <span>マイページ</span>
                 </a>
               </li>
-               </li><li class="">
-                <a href="">
-                  <span>ログアウト</span>
-                </a>
+               </li>
+               <li class="">
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => "nav-link disabled" %>
               </li>
 
 
@@ -79,14 +78,10 @@
                 </a>
               </li>
               <li class="">
-                <a href="">
-                  <span>新規登録</span>
-                </a>
+<%= link_to "新規登録", new_user_registration_path, class: "glyphicon glyphicon-edit" %></li>
               </li>
               <li class="">
-                <a href="">
-                  <span>ログイン</span>
-                </a>
+<%= link_to "ログイン", new_user_session_path, class: "glyphicon glyphicon-log-in"  %>
               </li>
               <% end %>
             </ul>

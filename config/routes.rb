@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 	root 'top#top'
   #root to: "items#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-	resources :items
+	resources :items, only: [:new, :create, :index, :show]
 	resources :users
 
 
