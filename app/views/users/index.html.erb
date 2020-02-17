@@ -10,7 +10,7 @@
 	<tbody>
 		<% @users.each do |user| %>
 		<tr>
-			<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
 			<td><%= user.name%></td>
 			<td><% if current_user != user %>
 				<% end %></td>

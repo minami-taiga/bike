@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @item_comment = ItemComment.new
   end
 
   def edit
@@ -22,6 +24,12 @@ class ItemsController < ApplicationController
     else
     render :new
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to items_path
   end
 
     private
