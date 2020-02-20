@@ -6,28 +6,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bike</title>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-
-    <div class="header" id="header">
-      <nav class="navbar navbar-main navbar-shadow" role="navigation" id="slide-nav">
+    <header id="header">
+      <nav class="navbar" role="navigation" id="slide-nav" >
         <div class="container relative">
           <div class="navbar-header">
-            <a class="navbar-logo" href="/">
+            <%= link_to "M's Bike", root_path, class: "logo" %>
 
-            </a>
-
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
           </div>
           <div id="slidemenu">
             <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
@@ -35,29 +23,32 @@
 
               <% if user_signed_in? %>
 
-                <li><%= link_to " ホーム", user_path(current_user), class: "glyphicon glyphicon-home"%></li>
-                <li><%= link_to " 投稿一覧", items_path, class: "glyphicon glyphicon-book books" %> </li>
-                <li><%= link_to " 新規投稿", new_item_path, class: "glyphicon glyphicon-book books" %> </li>
-              <li><%= link_to " ライダーズ", users_path, class: "glyphicon glyphicon-user" %></li>
-              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => "nav-link disabled" %></li>
+                <li><%= link_to " ホーム", user_path(current_user), class: "menu"%></li>
+                <li><%= link_to " 投稿一覧", items_path, class: "menu" %> </li>
+                <li><%= link_to " 新規投稿", new_item_path, class: "menu" %> </li>
+              <li><%= link_to " ライダーズ", users_path, class: "menu" %></li>
+              <li><%= link_to "マイページ", user_path(current_user.id), class: "menu" %></li>
+               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu" %></li>
 
 
               <% else %>
 
-              <li><%= link_to " ホーム", root_path, class: "glyphicon glyphicon-home"%></li>
-              <li><%= link_to " 投稿一覧", items_path, class: "glyphicon glyphicon-book books" %> </li>
-              <li><%= link_to " ライダーズ", users_path, class: "glyphicon glyphicon-user" %></li>
-              <li><%= link_to "新規登録", new_user_registration_path, class: "glyphicon glyphicon-edit" %></li>
-              <li><%= link_to "ログイン", new_user_session_path, class: "glyphicon glyphicon-log-in"  %></li>
+              <li><%= link_to " ホーム", root_path, class: "menu"%></li>
+              <li><%= link_to " 投稿一覧", items_path, class: "menu" %> </li>
+              <li><%= link_to " ライダーズ", users_path, class: "menu" %></li>
+              <li><%= link_to "新規登録", new_user_registration_path, class: "menu" %></li>
+              <li><%= link_to "ログイン", new_user_session_path, class: "menu"  %></li>
               <% end %>
             </ul>
           </div>
         </div>
       </nav>
-    </div>
+    </header>
+
+<div class="container header-margin">
+
 
     <%= yield %>
-
+</div>
   </body>
 </html>

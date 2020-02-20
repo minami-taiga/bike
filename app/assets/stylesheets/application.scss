@@ -13,5 +13,33 @@
  *= require_tree .
  *= require_self
  */
-	@import "bootstrap-sprockets";
-    @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+body{
+	background: image-url('wall2.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+header{
+	position: fixed;
+	background-color: rgba( 0, 0, 0, 0.5);
+	width: 100%;
+}
+
+
+.header-margin{
+	padding-top: 70px;
+}
+
+.logo{
+	color: white;
+	font-size: 35px;
+}
+
+.menu {
+	color: white;
+	font-size: 20px;
+}
