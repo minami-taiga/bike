@@ -29,7 +29,7 @@
                   <%= @item.bike_name %>
                 </h2> 　 </div>
             <div class="bar-show"></div> <br>
-            <%= attachment_image_tag @item, :image, :fill, 700, 450, format: 'jpeg',class: "img-thumbnail", fallback: "no_image.jpg"  %>
+            <%= attachment_image_tag @item, :image, :fill, 700, 450, format: 'jpg',class: "img-thumbnail", fallback: "no_image.jpg"  %>
               <div class="item-text">
                 <%= @item.created_at.strftime('%Y/%m/%d') %>
                   <% if @item.favorited_by?(current_user) %>
