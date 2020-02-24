@@ -1,3 +1,52 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.top-content {
+	width: 70%;
+	background-color: rgba( 0, 0, 0, 0.5);
+	margin: 0 auto;
+}
+
+
+.item-title-name{
+	color: white;
+	float: left;
+}
+
+.item-title-bike-name{
+	color: white;
+	margin: 30px auto -22px;
+	text-align: center;
+
+}
+
+.item-profire-image{
+	float: left;
+}
+
+.item-text{
+	color: white;
+
+}
+
+.text-left{
+	color: #FFE599;
+	font-size: 50px;
+}
+
+.gallery-text{
+	color: white;
+	font-size: 15px;
+	line-height : 2.5;
+	padding: 0 0 30px;
+}
+
+.bar-show{
+	width: 98%;
+	height: 2px;
+	background-color: #8A0000;
+	margin: 3px auto;
+}

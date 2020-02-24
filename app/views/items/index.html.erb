@@ -1,39 +1,39 @@
-<section class="sct-color-1 slice">
-  <div class="container-fluid masonry-container">
-    <div class="row">
-      <div class="col-md-8 col-sm-offset-2">
-        <div class="masonry-wrapper-cols">
-          <div class="masonry-gutter"></div>
-            <% @items.each do |item| %>
-            <div class="masonry-block">
-              <div class="block block-image v1">
-                <div class="block-image">
-                  <div class="view view-first">
-                    <%= attachment_image_tag item, :image %>
-                  </div>
-                </div>
-                <div class="block-content">
-                  <h3 class="block-title">
-                  <%= link_to item_path(item.id) do %>
-                     <i class="fa fa-map-marker"></i><%= item.bike_name %>
-                  <% end %>
-                  </h3>
-                  <p><%= item.content %></p>
-                  <ul class="inline-meta">
-                    <li>By
-                      <%= item.user.name %>
-                    </li>
-                    <li>
-                    <%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <% end %>
-            <%= paginate @items, class: "paginate" %>
-        </div>
-      </div>
+<div class="item-text">
+  <div class="text-center">
+    <div class="top-content">
+      <h1>Gallery</h1>
+      <div class="bar"></div>
     </div>
   </div>
-</section>
+  <div class="text-center">
+    <% @items.each do |item| %>
+      <div class="top-content">
+        <h3>
+          <%= link_to item.bike_name ,item_path(item.id),class: "white-text" %>
+        </h3>
+        <div class="bar"></div>
+        <%= attachment_image_tag item, :image, :fill, 500, 450, format: 'jpeg',class: "img-thumbnail" %>
+          <div class="gallery-text">
+            <p>
+              <%= item.content %>
+            </p>
+            <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg', class: "img-circle", fallback: "no_image.jpg", size:'75x75' %> By
+              <%= item.user.name %><br>
+                <%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %>
+                  <% if item.favorited_by?(current_user) %>
+                    <%= link_to item_favorites_path(item),class: "item-text", method: :delete do %> <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                      <%= item.favorites.count %> いいね
+                        <% end %>
+                          <% else %>
+                            <%= link_to item_favorites_path(item),class: "item-text", method: :post do %> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                              <%= item.favorites.count %> いいね
+                                <% end %>
+                                  <% end %>
+          </div>
+      </div>
+      <% end %>
+        <div class="top-content">
+          <%= paginate @items, class: "paginate white-text" %>
+        </div>
+  </div>
+</div>

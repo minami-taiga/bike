@@ -1,3 +1,56 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.top-content {
+	width: 70%;
+	background-color: rgba( 0, 0, 0, 0.5);
+	margin: 20px auto;
+	padding: 10px;
+	font-weight: bold;
+	border: solid 3px #FFFFFF;
+}
+
+.profile{
+	text-align: center;
+	color: white;
+	margin: 10px;
+
+}
+
+.bar{
+	width: 60%;
+	height: 2px;
+	background-color: #8A0000;
+	margin: 3px auto;
+}
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.white-text{
+	color: white;
+}
+
+.black-text{
+	color: black;
+}
+
+.image{
+	height: 150px;
+}
+
+.image-block{
+	width: 125px;
+	float: left;
+}
+
+.text-center-profile{
+	line-height: 170px;
+	padding-left: 45%
+}

@@ -1,24 +1,37 @@
-<table class="table">
-	<thead>
-		<tr>
-			<th>image</th>
-			<th>name</th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
+        <div class="text-center">
+          <div class="top-content">
+          <h1 class="white-text">Rider</h1>
+          <div class="bar"></div>
+        </div>
+        </div>
 
-	<tbody>
-		<% @users.each do |user| %>
-		<tr>
-			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
-			<td><%= user.name%></td>
-			<td><% if current_user != user %>
-				<% end %></td>
-			<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-</div>
-</div>
-</div>
+	<div class="white-text">
+
+
+
+
+				<% @users.each do |user| %>
+				<div class="top-content">
+					<div class="image-block">
+
+
+				<div class="image">
+					<%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'125x125' %></div>
+					<div class="text-center">
+					<%= user.name%>
+					</div>
+				</div>
+					<div class="text-center-profile clearfix">
+					<%= user.introduction %>
+				</div>
+				<div class="text-right">
+					<%= link_to "Show", user, class: "user_#{user.id}" %>
+				</div>
+
+				</div>
+				<% end %>
+
+
+
+	</div>
+

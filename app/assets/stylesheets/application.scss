@@ -27,11 +27,16 @@ header{
 	position: fixed;
 	background-color: rgba( 0, 0, 0, 0.5);
 	width: 100%;
+	z-index: 9999;
 }
 
 
 .header-margin{
-	padding-top: 70px;
+	padding-top: 100px;
+}
+
+a{
+	color: white;
 }
 
 .logo{
@@ -43,3 +48,5 @@ header{
 	color: white;
 	font-size: 20px;
 }
+
+
