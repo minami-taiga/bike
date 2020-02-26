@@ -12,12 +12,12 @@
           <%= link_to item.bike_name ,item_path(item.id),class: "white-text" %>
         </h3>
         <div class="bar"></div>
-        <%= attachment_image_tag item, :image, :fill, 500, 450, format: 'jpg',class: "img-thumbnail" %>
+        <%= attachment_image_tag item, :image, size: "500x450", format: 'jpg',class: "img-thumbnail" %>
           <div class="gallery-text">
             <p>
               <%= item.content %>
             </p>
-            <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'75x75' %> By
+            <%= attachment_image_tag @user, :profile_image, size: "150x150", format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'75x75' %> By
               <%= link_to item.user.name ,user_path(item.user.id)%><br>
                 <%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %>
                   <div id="favorites_buttons_<%= item.id %>">

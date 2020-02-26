@@ -9,7 +9,7 @@
     <div class="top-content">
       <div class="image-block">
         <div class="image">
-          <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'125x125' %>
+          <%= attachment_image_tag user, :profile_image, format: 'jpg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'125x125' %>
         </div>
         <div class="text-center">
           <%= user.name%>
