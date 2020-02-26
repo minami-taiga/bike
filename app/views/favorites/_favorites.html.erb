@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <% if item.favorited_by?(current_user) %>
+    <%= link_to item_favorites_path(item),class: "item-text", method: :delete, remote: true do %>
+      <div class="link-white"><i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+        <%= item.favorites.count %> いいね </div>
+      <% end %>
+        <% else %>
+          <%= link_to item_favorites_path(item),class: "item-text", method: :post, remote: true do %>
+            <div class="link-white"><i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= item.favorites.count %> いいね </div>
+            <% end %>
+              <% end %>
+                <% else %>
+                  <div class="link-white"><i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <%= item.favorites.count %> いいね</div>
+                  <% end %>

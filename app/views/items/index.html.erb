@@ -18,17 +18,11 @@
               <%= item.content %>
             </p>
             <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'75x75' %> By
-              <%= item.user.name %><br>
+              <%= link_to item.user.name ,user_path(item.user.id)%><br>
                 <%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %>
-                  <% if item.favorited_by?(current_user) %>
-                    <%= link_to item_favorites_path(item),class: "item-text", method: :delete do %> <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <%= item.favorites.count %> いいね
-                        <% end %>
-                          <% else %>
-                            <%= link_to item_favorites_path(item),class: "item-text", method: :post do %> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                              <%= item.favorites.count %> いいね
-                                <% end %>
-                                  <% end %>
+                  <div id="favorites_buttons_<%= item.id %>">
+                    <%= render partial: 'favorites/favorites', locals: {item: item} %>
+                  </div>
           </div>
       </div>
       <% end %>

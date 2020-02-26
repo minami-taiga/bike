@@ -5,90 +5,74 @@
         <div class="post-item">
           <div class="top-content">
             <div class="clearfix">
-
-
-
-
-   <div class="clearfix">
-<div class="item-profire-image">
-
-
-              <%= attachment_image_tag @item.user, :profile_image, style: "width: 60px; height: 60px;", fallback: "no_image.jpg", class: "item-title img-circle"%>
-
-</div>
-                <h4 class="item-title-name">
-                  By<%= @item.user.name %>
+              <div class="clearfix">
+                <div class="item-profire-image">
+                  <%= attachment_image_tag @item.user, :profile_image, style: "width: 60px; height: 60px;", fallback: "no_image.jpg", class: "item-title img-circle"%>
+                </div>
+                <h4 class="item-title-name"> By
+                  <%= @item.user.name %>
                 </h4>
-
-</div>
-
-
-
-
-                <h2 class="item-title-bike-name">
-                  <%= @item.bike_name %>
-                </h2> 　 </div>
+              </div>
+              <h2 class="item-title-bike-name">
+                <%= @item.bike_name %>
+              </h2> 　 </div>
             <div class="bar-show"></div> <br>
             <%= attachment_image_tag @item, :image, :fill, 700, 450, format: 'jpg',class: "img-thumbnail", fallback: "no_image.jpg"  %>
               <div class="item-text">
                 <%= @item.created_at.strftime('%Y/%m/%d') %>
-                  <% if @item.favorited_by?(current_user) %>
-                    <%= link_to item_favorites_path(@item),class: "item-text", method: :delete do %> <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                      <%= @item.favorites.count %> いいね
+                  <div id="favorites_buttons_<%= @item.id %>">
+                    <%= render partial: 'favorites/favorites', locals: {item: @item} %>
+                  </div> <i class="fa fa-comment"></i>
+                  <%= @item.item_comments.count %>件コメント
+                    <div class="post-content-inner mt-20">
+                      <p>
+                        <%= @item.content %>
+                      </p>
+                    </div>
+                    <% if @item.user == current_user %>
+                      <%= link_to "削除", item_path(@item),class: "item-text", method: :delete %>
                         <% end %>
-                          <% else %>
-                            <%= link_to item_favorites_path(@item),class: "item-text", method: :post do %> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                              <%= @item.favorites.count %> いいね
-                                <% end %>
-                                  <% end %> <i class="fa fa-comment"></i>
-                                    <%= @item.item_comments.count %>件コメント
-                                      <div class="post-content-inner mt-20">
-                                        <p>
-                                          <%= @item.content %>
-                                        </p>
+                          <div class="comment-list bt style-2" id="comments">
+                            <div class="float-wrapper">
+                              <h2 class="comment-count">
+                                <%= @item.item_comments.count %>件コメント</h2>
+                            </div>
+                            <ol>
+                              <% @item.item_comments.each do |item_comment| %>
+                                <li class="comment">
+                                  <div class="comment-body bb">
+                                    <div class="comment-avatar">
+                                      <div class="avatar">
+                                        <%= attachment_image_tag item_comment.user, :profile_image, style: "width: 60px; height: 60px;", fallback: "no_image.jpg", class: "img-circle" %>
                                       </div>
-                                      <% if @item.user == current_user %>
-                                        <%= link_to "削除", item_path(@item),class: "item-text", method: :delete %>
-                                          <% end %>
-                                            <div class="comment-list bt style-2" id="comments">
-                                              <div class="float-wrapper">
-                                                <h2 class="comment-count">
-                                                  <%= @item.item_comments.count %>件コメント</h2>
-                                              </div>
-                                              <ol>
-                                                <% @item.item_comments.each do |item_comment| %>
-                                                  <li class="comment">
-                                                    <div class="comment-body bb">
-                                                      <div class="comment-avatar">
-                                                        <div class="avatar">
-                                                          <%= attachment_image_tag item_comment.user, :profile_image, style: "width: 60px; height: 60px;", fallback: "no_image.jpg", class: "img-circle" %>
-                                                        </div>
-                                                      </div>
-                                                      <div class="comment-text">
-                                                        <div class="comment-author clearfix">
-                                                          <%=link_to item_comment.user.name,user_path(item_comment.user.id),class: "item-text" %>
-                                                            </a> <span class="comment-meta">
+                                    </div>
+                                    <div class="comment-text">
+                                      <div class="comment-author clearfix">
+                                        <%=link_to item_comment.user.name,user_path(item_comment.user.id),class: "item-text" %>
+                                          </a> <span class="comment-meta">
                         <span class="comment-date"><%= item_comment.created_at.strftime('%Y/%m/%d') %></span> </span>
-                                                        </div>
-                                                        <div class="comment-entry">
-                                                          <%= item_comment.comment %>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </li>
-                                                  <% end %>
-                                              </ol>
-                                            </div>
+                                      </div>
+                                      <div class="comment-entry">
+                                        <%= item_comment.comment %>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <% end %>
+                            </ol>
+                          </div>
               </div>
-              <%= form_for [@item, @item_comment] do |f| %>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+              <% if user_signed_in? %>
+                <%= form_for [@item, @item_comment] do |f| %>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+                    </div>
                   </div>
-                </div>
-                <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-                  <% end %>
-                    <h1>.</h1>
+                  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+                    <% end %>
+                      <% end %>
+                        <h1>.</h1>
           </div>
         </div>
       </div>

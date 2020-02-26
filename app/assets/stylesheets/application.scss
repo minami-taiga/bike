@@ -21,6 +21,7 @@ body{
 	background: image-url('wall2.jpg');
 	background-size: cover;
 	background-attachment: fixed;
+	font-family: 'Apple Chancery','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体',sans-serif;
 }
 
 header{
@@ -49,4 +50,15 @@ a{
 	font-size: 20px;
 }
 
+.text-box{
+	margin: 0 auto;
+	width: 50%;
+}
+
+.link-white:hover {color:#ffffff;}
+
+.navbar {
+	margin-bottom: 0px;
+
+}
 

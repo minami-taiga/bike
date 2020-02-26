@@ -1,44 +1,36 @@
 <div class="row">
+  <div class="top-content clearfix">
+    <div class="profile">
+      <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'150x150' %>
+    </div>
+    <div class="profile">
+      <%= @user.name %>
+    </div><br>
+    <div class="profile">
+      <%= @user.introduction %>
+    </div><br>
+    <div class="profile">
+      <% if @user == current_user %>
+        <botton type="botton" class="btn btn-default">
+          <%= link_to "プロフィール編集", edit_user_path(@user.id), class: "black-text" %>
+            <% end %>
+        </botton>
+    </div>
+  </div>
+  <% if @items.present? %>
     <div class="top-content clearfix">
-
-      <div class="profile">
-        <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'150x150' %>
-      </div>
-
-            <div class="profile">
-    	  <%= @user.name %>
-      </div><br>
-
-            <div class="profile">
-    	  <%= @user.introduction %>
-       </div><br>
-                   <div class="profile">
-           <% if @user == current_user %>
-<botton type="botton" class="btn btn-default">
-
-      <%= link_to "プロフィール編集", edit_user_path(@user.id), class: "black-text" %>
-      <% end %>
-</botton>
-</div>
-</div>
-
-
-<% if @items.present? %>
-
-<div class="top-content clearfix">
-    <% @items.each do |item| %>
-    <div class="col-sm-6" style="padding-bottom: 50px;">
-            <div class="text-center">
-      <%=link_to item.bike_name, item_path(item.id),class: "item-text" %><br>
-      <div class="bar"></div>
-        <%= attachment_image_tag item, :image, :fill, 200, 180, format: 'jpg',class: "img-thumbnail " %><br>
-        <div class="item-text">
-      <%= item.content %>
-    </div>
-    </div>
+      <% @items.each do |item| %>
+        <div class="col-sm-6" style="padding-bottom: 50px;">
+          <div class="text-center">
+            <%=link_to item.bike_name, item_path(item.id),class: "item-text" %><br>
+              <div class="bar"></div>
+              <%= attachment_image_tag item, :image, :fill, 200, 180, format: 'jpg',class: "img-thumbnail " %><br>
+                <div class="item-text">
+                  <%= item.content %>
+                </div>
+          </div>
+        </div>
+        <% end %>
     </div>
     <% end %>
-</div>
-<% end %>
-
 </div>

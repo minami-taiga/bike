@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= csrf_meta_tags %>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="https://kit.fontawesome.com/040a483df4.js" crossorigin="anonymous"></script>
+<head>
+  <%= csrf_meta_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/040a483df4.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <title>bike</title>
-  </head>
-
-  <body>
-    <header id="header">
-      <nav class="navbar" role="navigation" id="slide-nav" >
-        <div class="container relative">
-          <div class="navbar-header">
-            <%= link_to "M's Bike", root_path, class: "logo" %>
-
-          </div>
-          <div id="slidemenu">
-            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-
-
-              <% if user_signed_in? %>
-
-                <li><%= link_to " ホーム", user_path(current_user), class: "menu"%></li>
-                <li><%= link_to " 投稿一覧", items_path, class: "menu" %> </li>
-                <li><%= link_to " 新規投稿", new_item_path, class: "menu" %> </li>
-              <li><%= link_to " ライダーズ", users_path, class: "menu" %></li>
-              <li><%= link_to "マイページ", user_path(current_user.id), class: "menu" %></li>
-               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu" %></li>
-
-
-              <% else %>
-
-              <li><%= link_to " ホーム", root_path, class: "menu"%></li>
-              <li><%= link_to " 投稿一覧", items_path, class: "menu" %> </li>
-              <li><%= link_to " ライダーズ", users_path, class: "menu" %></li>
-              <li><%= link_to "新規登録", new_user_registration_path, class: "menu" %></li>
-              <li><%= link_to "ログイン", new_user_session_path, class: "menu"  %></li>
-              <% end %>
-            </ul>
-          </div>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <title>bike</title>
+</head>
+<body>
+  <header id="header">
+    <nav class="navbar" role="navigation" id="slide-nav">
+      <div class="container relative">
+        <div class="navbar-header">
+          <%= link_to "M's Bike", root_path, class: "logo" %>
         </div>
-      </nav>
-    </header>
-
-<div class="container header-margin">
-
-
+        <div id="slidemenu">
+          <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to " ホーム", user_path(current_user), class: "menu"%>
+              </li>
+              <li>
+                <%= link_to " 投稿一覧", items_path, class: "menu" %>
+              </li>
+              <li>
+                <%= link_to " 新規投稿", new_item_path, class: "menu" %>
+              </li>
+              <li>
+                <%= link_to " ライダーズ", users_path, class: "menu" %>
+              </li>
+              <li>
+                <%= link_to "マイページ", user_path(current_user.id), class: "menu" %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu" %>
+              </li>
+              <% else %>
+                <li>
+                  <%= link_to " ホーム", root_path, class: "menu"%>
+                </li>
+                <li>
+                  <%= link_to " 投稿一覧", items_path, class: "menu" %>
+                </li>
+                <li>
+                  <%= link_to " ライダーズ", users_path, class: "menu" %>
+                </li>
+                <li>
+                  <%= link_to "新規登録", new_user_registration_path, class: "menu" %>
+                </li>
+                <li>
+                  <%= link_to "ログイン", new_user_session_path, class: "menu"  %>
+                </li>
+                <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container header-margin">
     <%= yield %>
-</div>
-  </body>
+  </div>
+</body>
 </html>
