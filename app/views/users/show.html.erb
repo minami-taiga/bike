@@ -20,11 +20,11 @@
   <% if @items.present? %>
     <div class="top-content clearfix">
       <% @items.each do |item| %>
-        <div class="col-sm-6" style="padding-bottom: 50px;">
+        <div class="col-sm-6 user-gallery">
           <div class="text-center">
             <%=link_to item.bike_name, item_path(item.id),class: "item-text" %><br>
               <div class="bar"></div>
-              <%= attachment_image_tag item, :image,, size: "200x180", format: 'jpg',class: "img-thumbnail " %><br>
+              <%= attachment_image_tag item, :image, size: "200x180", format: 'jpg',class: "img-thumbnail " %><br>
                 <div class="item-text">
                   <%= item.content %>
                 </div>
