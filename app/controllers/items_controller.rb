@@ -5,8 +5,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-    @item_comment = ItemComment.new
+    begin
+      @item = Item.find(params[:id])
+      @item_comment = ItemComment.new
+    rescue => e
+      redirect_to root_path
+    end
   end
 
   def edit

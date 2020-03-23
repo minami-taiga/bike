@@ -4,10 +4,14 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
-		@items = @user.items
-	end
+		begin
+			@user = User.find(params[:id])
+			@items = @user.items
+		rescue => e
+			redirect_to root_path
+		end
 
+	end
 	def edit
 		@user = User.find(params[:id])
 	end

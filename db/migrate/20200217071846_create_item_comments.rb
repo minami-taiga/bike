@@ -4,7 +4,7 @@ class CreateItemComments < ActiveRecord::Migration[5.2]
       t.text :comment
       t.integer :user_id
       t.integer :item_id
-
+	  t.float :score
       t.timestamps
     end
   end
