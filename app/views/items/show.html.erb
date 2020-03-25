@@ -1,85 +1,90 @@
-<section class="sct-color-1 slice">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 post_images_container">
-        <div class="post-item">
-          <div class="top-content">
-            <div class="clearfix">
-              <div class="clearfix">
-                <div class="item-profire-image">
-                  <%= attachment_image_tag @item.user, :profile_image, size: "60x60", fallback: "no_image.jpg", class: "item-title img-circle"%>
-                </div>
-                <h4 class="item-title-name"> By
-                  <%= @item.user.name %>
-                </h4>
-              </div>
-              <h2 class="item-title-bike-name">
-                <%= @item.bike_name %>
-              </h2> 　 </div>
-            <div class="bar-show"></div> <br>
-            <%= attachment_image_tag @item, :image, size: "770x450", format: 'jpg',class: "img-thumbnail", fallback: "no_image.jpg"  %>
-              <div class="item-text">
-                <%= @item.created_at.strftime('%Y/%m/%d') %>
-                  <div id="favorites_buttons_<%= @item.id %>">
-                    <%= render partial: 'favorites/favorites', locals: {item: @item} %>
-                  </div> <i class="fa fa-comment"></i>
-                  <%= @item.item_comments.count %>件コメント
-                    <div class="post-content-inner mt-20">
-                      <p>
-                        <%= @item.content %>
-                      </p>
-                    </div>
-                    <% if @item.user == current_user %>
-                      <%= link_to "削除", item_path(@item),class: "item-text", method: :delete %>
-                        <% end %>
-                          <div class="comment-list bt style-2" id="comments">
-                            <div class="float-wrapper">
-                              <h2 class="comment-count">
-                                <%= @item.item_comments.count %>件コメント</h2>
-                            </div>
-                            <ol>
-                              <% @item.item_comments.each do |item_comment| %>
-                                <li class="comment">
-                                  <div class="comment-body bb">
-                                    <div class="comment-avatar">
-                                      <div class="avatar">
-                                        <%= attachment_image_tag item_comment.user, :profile_image, size:"60x60", fallback: "no_image.jpg", class: "img-circle" %>
-                                      </div>
-                                    </div>
-                                    <div class="comment-text">
-                                      <div class="comment-author clearfix">
-                                        <%=link_to item_comment.user.name,user_path(item_comment.user.id),class: "item-text" %>
-                                          </a> <span class="comment-meta">
-                        <span class="comment-date"><%= item_comment.created_at.strftime('%Y/%m/%d') %></span> </span>
-                                      </div>
-                                      <div class="comment-entry">
-                                        <%= item_comment.comment %>
-                                                              <span class="comment-score">
-                        <span class="comment-score"><%= item_comment&.score %></span>
-                      </span>
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
-                                <% end %>
-                            </ol>
-                          </div>
-              </div>
-              <% if user_signed_in? %>
-                <%= form_for [@item, @item_comment] do |f| %>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-                    </div>
-                  </div>
-                  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-                    <% end %>
-                      <% end %>
-                        <h1>.</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="top-content">
+        <div class="clearfix">
+          <div class="clearfix">
+            <div class="item-profire-image">
+              <%= attachment_image_tag @item.user, :profile_image, size: "60x60", fallback: "no_image.jpg", class: "item-title img-circle"%>
+            </div>
+            <h4 class="item-title-name"> By
+              <%= @item.user.name %>
+            </h4>
           </div>
-        </div>
+          <h2 class="item-title-bike-name">
+            <%= @item.bike_name %>
+          </h2> 　 </div>
+        <div class="bar-show"></div> <br>
+        <%= attachment_image_tag @item, :image, size: "770x450", format: 'jpg',class: "img-thumbnail", fallback: "no_image.jpg"  %>
+          <div class="item-text">
+            <%= @item.created_at.strftime('%Y/%m/%d') %>
+              <div id="favorites_buttons_<%= @item.id %>">
+                <%= render partial: 'favorites/favorites', locals: {item: @item} %>
+              </div> <i class="fa fa-comment"></i>
+              <%= @item.item_comments.count %>件コメント
+                <div class="post-content-inner mt-20">
+                  <p>
+                    <%= @item.content %>
+                  </p>
+                </div>
+                <% if @item.user == current_user %>
+                  <%= link_to "削除", item_path(@item),class: "item-text", method: :delete %>
+                    <% end %>
+                      <div class="comment-list bt style-2" id="comments">
+                        <div class="float-wrapper">
+                          <h2 class="comment-count">
+                            <%= @item.item_comments.count %>件コメント</h2>
+                        </div>
+                        <ol>
+                          <% @item.item_comments.each do |item_comment| %>
+                            <li class="comment">
+                              <div class="comment-body bb">
+                                <div class="comment-avatar">
+                                  <div class="avatar">
+                                    <%= attachment_image_tag item_comment.user, :profile_image, size:"60x60", fallback: "no_image.jpg", class: "img-circle" %>
+                                  </div>
+                                </div>
+                                <div class="comment-text">
+                                  <div class="comment-author clearfix">
+                                    <%=link_to item_comment.user.name,user_path(item_comment.user.id),class: "item-text" %>
+                                      </a> <span class="comment-meta">
+                        <span class="comment-date"><%= item_comment.created_at.strftime('%Y/%m/%d') %></span> </span>
+                                  </div>
+                                  <div class="comment-entry">
+                                    <%= item_comment.comment %>
+                                      <div id="star-<%= item_comment.id %>"> <label>star</label>
+                                        <%= hidden_field :star, id: :item_comment_score %>
+                                      </div>
+                                      <script>
+                                        $('#star-<%= item_comment.id %>').raty({
+                                                size     : 36,
+                                                starOff:  '<%= asset_path('star-off.png') %>',
+                                                starOn : '<%= asset_path('star-on.png') %>',
+                                                starHalf: '<%= asset_path('star-half.png') %>',
+                                                half: true,
+                                                readOnly: true,
+                                                score: '<%= 5*(item_comment.score + 1 ) / 2 %>'
+                                              });
+                                      </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <% end %>
+                        </ol>
+                      </div>
+          </div>
+          <% if user_signed_in? %>
+            <%= form_for [@item, @item_comment] do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+                </div>
+                <%= f.submit "送信する", class: "btn btn-lg btn-base-1 pull-right", style: "margin-right: 15px; margin-top: 8px;"%>
+              </div>
+              <% end %>
+                <% end %>
       </div>
     </div>
   </div>
-</section>
+</div>
