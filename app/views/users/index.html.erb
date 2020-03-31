@@ -12,14 +12,11 @@
           <%= attachment_image_tag user, :profile_image, format: 'jpg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'125x125' %>
         </div>
         <div class="text-center">
-          <%= user.name%>
+          <%= link_to user.name, user, class: "user_#{user.id}" %>
         </div>
       </div>
       <div class="text-center-profile clearfix">
         <%= user.introduction %>
-      </div>
-      <div class="text-right">
-        <%= link_to "Show", user, class: "user_#{user.id}" %>
       </div>
     </div>
     <% end %>
