@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: アカウント
+      item: 投稿
+    attributes:
+      user:
+        name: 名前
+        password: パスワード
+        email: メールアドレス
+        bike_name: バイク名
+        image: 画像
+        password_confirmation: パスワード確認
+      item:
+        bike_name: バイク名
+        image: 画像

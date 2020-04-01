@@ -11,8 +11,7 @@
               <%= form_for(@item, url: items_path, class: 'mt-20') do |f| %>
                 <% if @item.errors.any? %>
                   <div id="error_explanation">
-                    <h2 class="white-text">
-                      <%= @item.errors.count %>errors</h2>
+
                     <ul class="white-text">
                       <% @item.errors.full_messages.each do |message| %>
                         <li>

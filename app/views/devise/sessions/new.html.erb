@@ -1,6 +1,7 @@
 <div class="top-content">
   <div class="text-center text-box">
     <h2 class="white-text">ユーザーログイン</h2>
+    <%= render "devise/shared/error_messages", resource: resource %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email, class:"white-text"%><br />
