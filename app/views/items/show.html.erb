@@ -23,8 +23,8 @@
               </div> <i class="fa fa-comment"></i>
               <%= @item.item_comments.count %>件コメント
                 <div class="post-content-inner mt-20">
-                  <p class="item-content">
-                    <%= @item.content %>
+                  <p class="item-content text">
+                    <%=safe_join(@item.content.split("\n"),tag(:br))%>
                   </p>
                 </div>
                 <% if @item.user == current_user %>

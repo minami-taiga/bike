@@ -25,8 +25,8 @@
             <%=link_to item.bike_name, item_path(item.id),class: "item-text" %><br>
               <div class="bar"></div>
               <%= attachment_image_tag item, :image, size: "200x180", format: 'jpg',class: "img-thumbnail " %><br>
-                <div class="item-text">
-                  <%= item.content %>
+                <div class="item-text text">
+                  <%=safe_join(item.content.split("\n"),tag(:br))%>
                 </div>
           </div>
         </div>
