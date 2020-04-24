@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 	def show
 		begin
 			@user = User.find(params[:id])
-			@items = @user.items
+			@items = @user.items.page(params[:page]).reverse_order
+
 		rescue => e
 			redirect_to root_path
 		end

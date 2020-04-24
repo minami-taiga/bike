@@ -1,4 +1,4 @@
-<div class="row">
+
   <div class="top-content clearfix">
     <div class="profile">
       <%= attachment_image_tag @user, :profile_image,format: 'jpg', class: "img-circle", fallback: "no_image.jpg", size:'150x150' %>
@@ -18,19 +18,27 @@
     </div>
   </div>
   <% if @items.present? %>
-    <div class="top-content clearfix">
-      <% @items.each do |item| %>
-        <div class="col-sm-6 user-gallery">
-          <div class="text-center">
-            <%=link_to item.bike_name, item_path(item.id),class: "item-text" %><br>
-              <div class="bar"></div>
-              <%= attachment_image_tag item, :image, size: "200x180", format: 'jpg',class: "img-thumbnail " %><br>
-                <div class="item-text text">
-                  <%=safe_join(item.content.split("\n"),tag(:br))%>
-                </div>
+<div class="text-center">
+          <% @items.each do |item| %>
+      <div class="top-content">
+        <h3>
+          <%= link_to item.bike_name ,item_path(item.id),class: "white-text" %>
+        </h3>
+        <div class="bar"></div>
+        <%= attachment_image_tag item, :image, size: "500x450", format: 'jpg',class: "img-thumbnail" %>
+          <div class="gallery-text text">
+            <p>
+              <%=safe_join(item.content.split("\n"),tag(:br))%>
+            </p>
+                <%= link_to "#{item.item_comments.count} コメント", item_path(item.id) %>
+                  <div id="favorites_buttons_<%= item.id %>">
+                    <%= render partial: 'favorites/favorites', locals: {item: item} %>
+                  </div>
           </div>
+      </div>
+      <% end %>
+              <div class="top-content">
+          <%= paginate @items, class: "paginate white-text" %>
         </div>
-        <% end %>
     </div>
     <% end %>
-</div>
